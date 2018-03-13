@@ -2,8 +2,18 @@ from binary_tree_node import BinaryTreeNode
 
 
 def is_symmetric(tree):
-    # Implement this placeholder.
-    return True
+    def check_symmetric(left, right):
+        if left is None and right is None:
+            return True
+        elif (left is None and right is not None) or (left is not None and right is None):
+            return False
+        
+        return ((left.data == right.data) and
+                (check_symmetric(left.left, right.right) and 
+                    check_symmetric(left.right, right.left)))
+    if tree is None:
+        return True  
+    return check_symmetric(tree.left, tree.right)
 
 
 from sys import exit
